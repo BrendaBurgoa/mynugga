@@ -73,4 +73,85 @@
         </div>
         <script src="./assets/scripts/script.js"></script>
     </body>	
+	 <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        .floating-image {
+            position: absolute;
+            width: 50px; /* Adjust size as needed */
+            height: 50px; /* Adjust size as needed */
+			  z-index: 1; /* Lower z-index */
+        }
+		.content {
+			  z-index: 2; /* Lower z-index */
+        }
+    </style>
+	<script>
+			document.addEventListener("DOMContentLoaded", () => {
+			const numberOfImages = 50;
+			const images = [];
+
+			// Create image elements and append them to the body
+			for (let i = 0; i < numberOfImages; i++) {
+				const img = document.createElement("img");
+				img.src = "assets/images/apple-touch-icon.png";//${i + 1}.png`; // Replace with your image paths
+				  img.classList.add("floating-image");
+
+        // Random initial position
+        img.style.left = `${Math.random() * window.innerWidth}px`;
+        img.style.top = `${Math.random() * window.innerHeight}px`;
+
+        // Random initial speed and rotation
+        img.dataset.vx = (Math.random() - 0.5) * 4; // Horizontal speed
+        img.dataset.vy = (Math.random() - 0.5) * 4; // Vertical speed
+        img.dataset.rotation = 0; // Initial rotation angle
+        img.dataset.rotationSpeed = (Math.random() - 0.5) * 2; // Rotation speed
+
+        document.body.appendChild(img);
+        images.push(img);
+    }
+
+    // Function to update the position and rotation of images
+    function updatePositions() {
+        images.forEach(img => {
+            let x = parseFloat(img.style.left);
+            let y = parseFloat(img.style.top);
+            let vx = parseFloat(img.dataset.vx);
+            let vy = parseFloat(img.dataset.vy);
+            let rotation = parseFloat(img.dataset.rotation);
+            let rotationSpeed = parseFloat(img.dataset.rotationSpeed);
+
+            // Update position
+            x += vx;
+            y += vy;
+
+            // Check for collisions with the walls
+            if (x <= 0 || x >= window.innerWidth - img.width) {
+                vx = -vx;
+            }
+            if (y <= 0 || y >= window.innerHeight - img.height) {
+                vy = -vy;
+            }
+
+            // Update rotation
+            rotation += rotationSpeed;
+
+            // Apply updated position, speed, and rotation
+            img.style.left = `${x}px`;
+            img.style.top = `${y}px`;
+            img.style.transform = `rotate(${rotation}deg)`;
+            img.dataset.vx = vx;
+            img.dataset.vy = vy;
+            img.dataset.rotation = rotation;
+        });
+
+        requestAnimationFrame(updatePositions);
+    }
+
+    // Start the animation
+    updatePositions();
+});
+	</script>
 </html>
