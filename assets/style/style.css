@@ -129,6 +129,16 @@ button {
   box-shadow: inset -4px -4px 0px 0px #e4e435;
 }
 
+.flying-nuggas {
+  background: #35bbeb;
+  box-shadow: inset -4px -4px 0px 0px #3592e4;
+}
+
+.flying-nuggas:hover, .flying-nuggas:focus {
+  background: #3569eb;
+  box-shadow: inset -6px -6px 0px 0px #2657d2;
+}
+
 button:before {
   top: -3px;
   left: 0;

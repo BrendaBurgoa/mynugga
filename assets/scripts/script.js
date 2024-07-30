@@ -55,10 +55,6 @@ const images = [
   './assets/images/png/53.jpg',
   './assets/images/png/54.jpg',
   './assets/images/png/55.jpg',
-  './assets/images/png/56.jpg',
-  './assets/images/png/57.jpg',
-  './assets/images/png/58.jpg',
-  './assets/images/png/59.jpg'
 ];
 
 //Array de Videos
@@ -156,7 +152,7 @@ function setVideoBackground(videoSrc) {
       video.style.height = '50%';
       video.style.minWidth = '50%';
       video.style.minHeight = '50%';
-      video.style.transform = 'translate(-50%, -50%)';
+      video.style.transform = 'translate(-50%, -30%)';
       backgroundContainer.appendChild(video);
   }
 
@@ -236,76 +232,93 @@ window.addEventListener('resize', applyStylesBasedOnZoom);
 // Perritos
 
 var videoSource = document.getElementById('myVideo');
-videoSource.src = 'assets/images/png/3.mp4';
+//videoSource.src = 'assets/images/png/3.MP4';
+
 
 if (window.innerWidth > 600) {
 
-  videoSource.src = 'assets/images/png/1.mp4';
+  //videoSource.src = 'assets/images/png/1.mp4';
+  document.getElementById('flying-nuggas').addEventListener('click', toggleNugs);
+  var flyingDogs = false;
+  function toggleNugs() {
+    if (!flyingDogs) {
+      document.getElementById('flying-nuggas').textContent = 'REMOVE FLYING $NUGGAS :(';
+      //document.addEventListener("DOMContentLoaded", () => {
+        const numberOfImages = 50;
+        const images = [];
+    
+        // Create image elements and append them to the body
+        for (let i = 0; i < numberOfImages; i++) {
+          const img = document.createElement("img");
+          img.src = "assets/images/apple-touch-icon.png";//${i + 1}.png`; // Replace with your image paths
+            img.classList.add("floating-image");
+    
+          // Random initial position
+          img.style.left = `${Math.random() * window.innerWidth}px`;
+          img.style.top = `${Math.random() * window.innerHeight}px`;
+    
+          // Random initial speed and rotation
+          img.dataset.vx = (Math.random() - 0.5) * 4; // Horizontal speed
+          img.dataset.vy = (Math.random() - 0.5) * 4; // Vertical speed
+          img.dataset.rotation = 0; // Initial rotation angle
+          img.dataset.rotationSpeed = (Math.random() - 0.5) * 2; // Rotation speed
+    
+          document.body.appendChild(img);
+          images.push(img);
+        }
+    
+    
+        // Function to update the position and rotation of images
+        function updatePositions() {
+          images.forEach(img => {
+              let x = parseFloat(img.style.left);
+              let y = parseFloat(img.style.top);
+              let vx = parseFloat(img.dataset.vx);
+              let vy = parseFloat(img.dataset.vy);
+              let rotation = parseFloat(img.dataset.rotation);
+              let rotationSpeed = parseFloat(img.dataset.rotationSpeed);
+    
+              // Update position
+              x += vx;
+              y += vy;
+    
+              // Check for collisions with the walls
+              if (x <= 0 || x >= window.innerWidth - img.width) {
+                  vx = -vx;
+              }
+              if (y <= 0 || y >= window.innerHeight - img.height) {
+                  vy = -vy;
+              }
+    
+              // Update rotation
+              rotation += rotationSpeed;
+    
+              // Apply updated position, speed, and rotation
+              img.style.left = `${x}px`;
+              img.style.top = `${y}px`;
+              img.style.transform = `rotate(${rotation}deg)`;
+              img.dataset.vx = vx;
+              img.dataset.vy = vy;
+              img.dataset.rotation = rotation;
+          });
+    
+          requestAnimationFrame(updatePositions);
+        }
+    
+        // Start the animation
+        updatePositions();
+        flyingDogs = true;
+      //});
+    
+    } else {
+      flyingDogs = false;
+      document.getElementById('flying-nuggas').textContent = 'FLYING $NUGGAS';
+      const imagesToRemove = document.querySelectorAll('.floating-image');
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const numberOfImages = 50;
-    const images = [];
-
-    // Create image elements and append them to the body
-    for (let i = 0; i < numberOfImages; i++) {
-      const img = document.createElement("img");
-      img.src = "assets/images/apple-touch-icon.png";//${i + 1}.png`; // Replace with your image paths
-        img.classList.add("floating-image");
-
-      // Random initial position
-      img.style.left = `${Math.random() * window.innerWidth}px`;
-      img.style.top = `${Math.random() * window.innerHeight}px`;
-
-      // Random initial speed and rotation
-      img.dataset.vx = (Math.random() - 0.5) * 4; // Horizontal speed
-      img.dataset.vy = (Math.random() - 0.5) * 4; // Vertical speed
-      img.dataset.rotation = 0; // Initial rotation angle
-      img.dataset.rotationSpeed = (Math.random() - 0.5) * 2; // Rotation speed
-
-      document.body.appendChild(img);
-      images.push(img);
-  }
-
-
-  // Function to update the position and rotation of images
-  function updatePositions() {
-      images.forEach(img => {
-          let x = parseFloat(img.style.left);
-          let y = parseFloat(img.style.top);
-          let vx = parseFloat(img.dataset.vx);
-          let vy = parseFloat(img.dataset.vy);
-          let rotation = parseFloat(img.dataset.rotation);
-          let rotationSpeed = parseFloat(img.dataset.rotationSpeed);
-
-          // Update position
-          x += vx;
-          y += vy;
-
-          // Check for collisions with the walls
-          if (x <= 0 || x >= window.innerWidth - img.width) {
-              vx = -vx;
-          }
-          if (y <= 0 || y >= window.innerHeight - img.height) {
-              vy = -vy;
-          }
-
-          // Update rotation
-          rotation += rotationSpeed;
-
-          // Apply updated position, speed, and rotation
-          img.style.left = `${x}px`;
-          img.style.top = `${y}px`;
-          img.style.transform = `rotate(${rotation}deg)`;
-          img.dataset.vx = vx;
-          img.dataset.vy = vy;
-          img.dataset.rotation = rotation;
+      // Itera sobre cada imagen y la elimina del DOM
+      imagesToRemove.forEach((image) => {
+        image.parentNode.removeChild(image);
       });
-
-      requestAnimationFrame(updatePositions);
+    }
   }
-
-  // Start the animation
-  updatePositions();
-  });
-
 }
