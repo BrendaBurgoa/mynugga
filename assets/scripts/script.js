@@ -126,6 +126,18 @@ const videos = [
   './assets/images/png/1.mp4',
   './assets/images/png/2.mp4',
   './assets/images/png/3.mp4',
+  './assets/images/png/4.mp4',
+  './assets/images/png/5.mp4',
+  './assets/images/png/6.mp4',
+  './assets/images/png/7.mp4',
+  './assets/images/png/8.MP4',
+  './assets/images/png/9.MP4',
+  './assets/images/png/10.MP4',
+  './assets/images/png/11.MP4',
+  './assets/images/png/12.MP4',
+  './assets/images/png/13.MP4',
+  './assets/images/png/14.MP4',
+  './assets/images/png/15.MP4'
 ];
 
 let currentBackground = '';
@@ -154,6 +166,8 @@ function getRandomElementWithoutRepetition(array, lastIndex) {
 
 // Función para cambiar la imagen o video de fondo
 function changeBackground() {
+	
+	backgroundContainer.style.display="visible";
   // Decide aleatoriamente si usar una imagen o un video
   isVideo = Math.random() < 0.5;
   window.confettiful = new Confettiful(document.querySelector(".confetti"));

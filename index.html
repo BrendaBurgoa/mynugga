@@ -32,18 +32,22 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">    </head>
 	<body>
+	<video autoplay muted loop id="myVideo">
+	  <source src="assets/images/png/1.mp4" type="video/mp4">
+	</video>
+	 <div class="content">
         <div class="column">
             <!-- Img Meme -->
-            <div id="background-container" class="img-meme"></div>
+             <div id="background-container" class="img-meme" style="display:none"></div>
             <!-- Botones -->
             <div class="data-container">
                 <div>
-                    <h1>Pup Swag and Crypto Hustle</h1>
+                    <h1>Pup Swag and Crypto Hustle</h1></br>
                     <p>Yo, peep $NUGGA! We’ve got a fly pup with fluffy fur, soulful eyes, and a waggin' tail that’s straight fire. Our crew revived it and now it’s all about that dope vibe, epic memes, and non-stop fun. Roll with us and jump into the most lit crypto hustle around!                </p>
                 </div>
                 <div class="buttons">
-                    <button id="change-background-button">Give me a $NUGGA MEME</button>
-                    <button id="download-background-button" class="share_btn">SHARE</button>
+                    <button id="change-background-button">Get a $NUGGA</button>
+                    <!--  <button id="download-background-button" class="share_btn">SHARE</button>-->
                 </div>
                 <div class="follow">
                     <a href="#" target="_blank">
@@ -55,8 +59,17 @@
                 </div>
             </div>
             </div>
-        <!-- Confetti -->
-        <div class="confetti">
+			
+		</div>
+        <!-- Modal -->
+        <div id="modalSuccess" class="modal confetti">
+            <div class="gradient-modal success">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2 class="is-center color-white">Email Received 🚀</h2>
+                    <p>Thank you for your interest! We will notify you as soon as the iOS version is available.</p>
+                </div>
+            </div>
         </div>
         <script src="./assets/scripts/script.js"></script>
     </body>	
