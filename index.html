@@ -32,8 +32,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">    </head>
 	<body>
-	<video autoplay muted loop id="myVideo">
-	  <source src="assets/images/png/1.mp4" type="video/mp4">
+	<video autoplay muted loop id="myVideo" src="assets/images/png/1.mp4" type="video/mp4">
 	</video>
 	 <div class="content">
         <div class="column">
@@ -41,15 +40,15 @@
              <div id="background-container" class="img-meme" style="display:none"></div>
             <!-- Botones -->
             <div class="data-container">
-                <div>
+                <div class="data-text">
                     <h1>Pup Swag and Crypto Hustle</h1></br>
                     <p>Yo, peep $NUGGA! We’ve got a fly pup with fluffy fur, soulful eyes, and a waggin' tail that’s straight fire. Our crew revived it and now it’s all about that dope vibe, epic memes, and non-stop fun. Roll with us and jump into the most lit crypto hustle around!                </p>
                 </div>
                 <div class="buttons">
                     <button id="change-background-button">Get a $NUGGA</button>
-                    <!--  <button id="download-background-button" class="share_btn">SHARE</button>-->
+                    <button id="download-background-button" class="share_btn">SHARE</button>
                 </div>
-                <div class="follow">
+                <div class="follow" style="display: none;">
                     <a href="#" target="_blank">
                         <img src="./assets/images/icons8-telegram-100.png" alt="Telegram">
                     </a>
@@ -61,97 +60,6 @@
             </div>
 			
 		</div>
-        <!-- Modal -->
-        <div id="modalSuccess" class="modal confetti">
-            <div class="gradient-modal success">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal()">&times;</span>
-                    <h2 class="is-center color-white">Email Received 🚀</h2>
-                    <p>Thank you for your interest! We will notify you as soon as the iOS version is available.</p>
-                </div>
-            </div>
-        </div>
         <script src="./assets/scripts/script.js"></script>
     </body>	
-	 <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-        .floating-image {
-            position: absolute;
-            width: 50px; /* Adjust size as needed */
-            height: 50px; /* Adjust size as needed */
-			  z-index: 1; /* Lower z-index */
-        }
-		.content {
-			  z-index: 2; /* Lower z-index */
-        }
-    </style>
-	<script>
-			document.addEventListener("DOMContentLoaded", () => {
-			const numberOfImages = 50;
-			const images = [];
-
-			// Create image elements and append them to the body
-			for (let i = 0; i < numberOfImages; i++) {
-				const img = document.createElement("img");
-				img.src = "assets/images/apple-touch-icon.png";//${i + 1}.png`; // Replace with your image paths
-				  img.classList.add("floating-image");
-
-        // Random initial position
-        img.style.left = `${Math.random() * window.innerWidth}px`;
-        img.style.top = `${Math.random() * window.innerHeight}px`;
-
-        // Random initial speed and rotation
-        img.dataset.vx = (Math.random() - 0.5) * 4; // Horizontal speed
-        img.dataset.vy = (Math.random() - 0.5) * 4; // Vertical speed
-        img.dataset.rotation = 0; // Initial rotation angle
-        img.dataset.rotationSpeed = (Math.random() - 0.5) * 2; // Rotation speed
-
-        document.body.appendChild(img);
-        images.push(img);
-    }
-
-    // Function to update the position and rotation of images
-    function updatePositions() {
-        images.forEach(img => {
-            let x = parseFloat(img.style.left);
-            let y = parseFloat(img.style.top);
-            let vx = parseFloat(img.dataset.vx);
-            let vy = parseFloat(img.dataset.vy);
-            let rotation = parseFloat(img.dataset.rotation);
-            let rotationSpeed = parseFloat(img.dataset.rotationSpeed);
-
-            // Update position
-            x += vx;
-            y += vy;
-
-            // Check for collisions with the walls
-            if (x <= 0 || x >= window.innerWidth - img.width) {
-                vx = -vx;
-            }
-            if (y <= 0 || y >= window.innerHeight - img.height) {
-                vy = -vy;
-            }
-
-            // Update rotation
-            rotation += rotationSpeed;
-
-            // Apply updated position, speed, and rotation
-            img.style.left = `${x}px`;
-            img.style.top = `${y}px`;
-            img.style.transform = `rotate(${rotation}deg)`;
-            img.dataset.vx = vx;
-            img.dataset.vy = vy;
-            img.dataset.rotation = rotation;
-        });
-
-        requestAnimationFrame(updatePositions);
-    }
-
-    // Start the animation
-    updatePositions();
-});
-	</script>
 </html>
