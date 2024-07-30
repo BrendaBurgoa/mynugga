@@ -1,63 +1,3 @@
-
-//Confetti! 
-
-const Confettiful = function (el) {
-  this.el = el;
-  this.containerEl = null;
-
-  this.confettiFrequency = 3;
-  this.confettiColors = ["#fce18a", "#ff726d", "#b48def", "#f4306d"];
-  this.confettiAnimations = ["slow", "medium", "fast"];
-
-  this._setupElements();
-  this._renderConfetti();
-};
-
-Confettiful.prototype._setupElements = function () {
-  const containerEl = document.createElement("div");
-  const elPosition = this.el.style.position;
-
-  if (elPosition !== "relative" || elPosition !== "absolute") {
-    this.el.style.position = "relative";
-  }
-
-  containerEl.classList.add("confetti-container");
-
-  this.el.appendChild(containerEl);
-
-  this.containerEl = containerEl;
-};
-
-Confettiful.prototype._renderConfetti = function () {
-  this.confettiInterval = setInterval(() => {
-    const confettiEl = document.createElement("div");
-    const confettiSize = Math.floor(Math.random() * 3) + 7 + "px";
-    const confettiBackground = this.confettiColors[
-      Math.floor(Math.random() * this.confettiColors.length)
-    ];
-    const confettiLeft = Math.floor(Math.random() * this.el.offsetWidth) + "px";
-    const confettiAnimation = this.confettiAnimations[
-      Math.floor(Math.random() * this.confettiAnimations.length)
-    ];
-
-    confettiEl.classList.add(
-      "confetti",
-      "confetti--animation-" + confettiAnimation
-    );
-    confettiEl.style.left = confettiLeft;
-    confettiEl.style.width = confettiSize;
-    confettiEl.style.height = confettiSize;
-    confettiEl.style.backgroundColor = confettiBackground;
-
-    confettiEl.removeTimeout = setTimeout(function () {
-      confettiEl.parentNode.removeChild(confettiEl);
-    }, 2000);
-
-    this.containerEl.appendChild(confettiEl);
-  }, 25);
-};
-
-
 // Array de imágenes
 const images = [
   './assets/images/png/1.jpg',
@@ -124,12 +64,12 @@ const images = [
 //Array de Videos
 const videos = [
   './assets/images/png/1.mp4',
-  './assets/images/png/2.mp4',
-  './assets/images/png/3.mp4',
-  './assets/images/png/4.mp4',
-  './assets/images/png/5.mp4',
-  './assets/images/png/6.mp4',
-  './assets/images/png/7.mp4',
+  './assets/images/png/2.MP4',
+  './assets/images/png/3.MP4',
+  './assets/images/png/4.MP4',
+  './assets/images/png/5.MP4',
+  './assets/images/png/6.MP4',
+  './assets/images/png/7.MP4',
   './assets/images/png/8.MP4',
   './assets/images/png/9.MP4',
   './assets/images/png/10.MP4',
@@ -167,20 +107,21 @@ function getRandomElementWithoutRepetition(array, lastIndex) {
 // Función para cambiar la imagen o video de fondo
 function changeBackground() {
 	
-	backgroundContainer.style.display="visible";
+	backgroundContainer.style.display="block";
+  document.querySelector('.data-text').style.display= "none";
+  document.querySelector('.share_btn').style.display= "block";
+  document.querySelector('.data-container').style.height= "auto";
+
+
   // Decide aleatoriamente si usar una imagen o un video
   isVideo = Math.random() < 0.5;
-  window.confettiful = new Confettiful(document.querySelector(".confetti"));
-  document.querySelector('.confetti-container').style.visibility= "visible";
-  const confettiContainer = document.querySelector('.confetti-container');
-  confettiContainer.style.opacity = 1; // Asegurarse de que la opacidad esté al máximo
-  confettiContainer.style.display = "block";
 
   if(firstTime) {
-    document.querySelector('.confetti-container').style.visibility= "hidden";
+    document.querySelector('.share_btn').style.display= "none";
+    document.querySelector('.data-container').style.height= "100vh";
+    document.querySelector('.data-text').style.display= "block";
+    backgroundContainer.style.display="none";
     firstTime = false;
-    confettiContainer.style.opacity = 0;
-    confettiContainer.style.display = "none";
   }
 
   if (isVideo) {
@@ -196,15 +137,6 @@ function changeBackground() {
     backgroundContainer.style.backgroundImage = `url(${currentBackground})`;
     removeVideoBackground();
   }
-
-  // Iniciar el temporizador para hacer desaparecer el confeti
-  setTimeout(() => {
-    confettiContainer.style.opacity = 0; // Cambiar la opacidad a 0
-    setTimeout(() => {
-      confettiContainer.style.visibility = "hidden"; // Ocultar el contenedor después de la transición
-      confettiContainer.style.display = "none";
-    }, 1000); // Esperar el tiempo de la transición antes de ocultar el contenedor
-  }, 1000); // Esperar 3 segundos antes de iniciar la desaparición
 }
 
 // Función para establecer un video como fondo
@@ -229,11 +161,11 @@ function setVideoBackground(videoSrc) {
   }
 
   if (window.innerWidth < 600) {
-    video.style.position = 'absolute';
-    video.style.top = '23%';
+    video.style.position = 'relative';
+    video.style.top = '50%';
     video.style.left = '50%';
-    video.style.width = '70%';
-    video.style.height = '70%';
+    video.style.width = '90%';
+    video.style.height = '90%';
     video.style.minWidth = '70%';
     video.style.minHeight = '70%';
     video.style.transform = 'translate(-50%, -50%)';
@@ -252,7 +184,6 @@ function removeVideoBackground() {
 
 // Función para descargar la imagen de fondo
 function downloadBackground() {
-  document.querySelector('.confetti-container').style.display= "none";
   fetch(currentBackground)
     .then(response => response.blob())
     .then(blob => {
@@ -302,13 +233,79 @@ window.addEventListener('load', applyStylesBasedOnZoom);
 window.addEventListener('resize', applyStylesBasedOnZoom);
 
 
+// Perritos
 
-// close currently open modal
-function closeModal() {
-    document.querySelector('.modal.open').classList.remove('open');
-    document.querySelector('.confetti-container').style.display= "none";
-    document.body.classList.remove('modal-open');
-    modalInput.value = ""; // Clear the input field
-    //modal.style.display= "none";
+var videoSource = document.getElementById('myVideo');
+videoSource.src = 'assets/images/png/3.mp4';
+
+if (window.innerWidth > 600) {
+
+  videoSource.src = 'assets/images/png/1.mp4';
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const numberOfImages = 50;
+    const images = [];
+
+    // Create image elements and append them to the body
+    for (let i = 0; i < numberOfImages; i++) {
+      const img = document.createElement("img");
+      img.src = "assets/images/apple-touch-icon.png";//${i + 1}.png`; // Replace with your image paths
+        img.classList.add("floating-image");
+
+      // Random initial position
+      img.style.left = `${Math.random() * window.innerWidth}px`;
+      img.style.top = `${Math.random() * window.innerHeight}px`;
+
+      // Random initial speed and rotation
+      img.dataset.vx = (Math.random() - 0.5) * 4; // Horizontal speed
+      img.dataset.vy = (Math.random() - 0.5) * 4; // Vertical speed
+      img.dataset.rotation = 0; // Initial rotation angle
+      img.dataset.rotationSpeed = (Math.random() - 0.5) * 2; // Rotation speed
+
+      document.body.appendChild(img);
+      images.push(img);
+  }
+
+
+  // Function to update the position and rotation of images
+  function updatePositions() {
+      images.forEach(img => {
+          let x = parseFloat(img.style.left);
+          let y = parseFloat(img.style.top);
+          let vx = parseFloat(img.dataset.vx);
+          let vy = parseFloat(img.dataset.vy);
+          let rotation = parseFloat(img.dataset.rotation);
+          let rotationSpeed = parseFloat(img.dataset.rotationSpeed);
+
+          // Update position
+          x += vx;
+          y += vy;
+
+          // Check for collisions with the walls
+          if (x <= 0 || x >= window.innerWidth - img.width) {
+              vx = -vx;
+          }
+          if (y <= 0 || y >= window.innerHeight - img.height) {
+              vy = -vy;
+          }
+
+          // Update rotation
+          rotation += rotationSpeed;
+
+          // Apply updated position, speed, and rotation
+          img.style.left = `${x}px`;
+          img.style.top = `${y}px`;
+          img.style.transform = `rotate(${rotation}deg)`;
+          img.dataset.vx = vx;
+          img.dataset.vy = vy;
+          img.dataset.rotation = rotation;
+      });
+
+      requestAnimationFrame(updatePositions);
+  }
+
+  // Start the animation
+  updatePositions();
+  });
+
 }
-
