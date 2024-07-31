@@ -571,6 +571,8 @@ a {
   .data-container {
     text-align: center;
     width: 85%;
+    margin-bottom: 5rem;
+    justify-content: flex-end;
   }
 
   .column {

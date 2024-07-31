@@ -233,7 +233,7 @@ window.addEventListener('resize', applyStylesBasedOnZoom);
 
 var videoSource = document.getElementById('myVideo');
 //videoSource.src = 'assets/images/png/3.MP4';
-
+document.getElementById('flying-nuggas').style.display="none";
 
 if (window.innerWidth > 600) {
 
