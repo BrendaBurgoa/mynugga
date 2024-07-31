@@ -237,6 +237,7 @@ document.getElementById('flying-nuggas').style.display="none";
 
 if (window.innerWidth > 600) {
 
+  document.getElementById('flying-nuggas').style.display="block";
   //videoSource.src = 'assets/images/png/1.mp4';
   document.getElementById('flying-nuggas').addEventListener('click', toggleNugs);
   var flyingDogs = false;
