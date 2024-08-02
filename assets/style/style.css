@@ -20,13 +20,10 @@ body, html {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-size: auto;
-  background-position: center;
-  background-repeat: repeat;
-  background-image: url(../images/png/1.mp4);
   font-family: "Noto Sans", sans-serif;
   color:white;
 }
+
 #myVideo {
   position: fixed;
   right: 0;
@@ -118,6 +115,11 @@ button {
   text-decoration: none;
   color: white;
   box-shadow: inset -4px -4px 0px 0px #4aa52e;
+}
+
+a {
+  font-family: "Silkscreen", sans-serif;
+  text-decoration: underline;
 }
 
 #download-background-button {
@@ -233,7 +235,10 @@ p {
 
 a {
   color: #ffffff;
-  text-decoration: none;
+}
+
+a:hover {
+  background-color: #35bbeb;
 }
 
 .follow img {
@@ -587,7 +592,7 @@ a {
     overscroll-behavior-y: none;
     overscroll-behavior-block: none;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
   .img-meme {

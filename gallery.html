@@ -1,0 +1,105 @@
+<!DOCTYPE  html>
+<html>
+	<head>
+		<title>MY $NUGGA</title>
+        <meta charset="UTF-8">
+        <link href="./assets/style/style.css" rel="stylesheet" type="text/css">
+        <link href="./assets/style/memes.css" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="./assets/images/favicon.ico" type="image/png" />
+		<meta name="title" content="My $NUGGA" />
+        <meta name="description"
+            content="$NUGGA’s Got the Fluff, the Memes, and the Hype!" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="" />
+        <meta property="og:title" content="My $NUGGA" />
+        <meta property="og:description"
+            content="$NUGGA’s Got the Fluff, the Memes, and the Hype!" />
+        <meta property="og:image"
+            content="assets\images\png\splash_web.png" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="" />
+        <meta property="twitter:title" content="My $NUGGA" />
+        <meta property="twitter:description"
+            content="$NUGGA’s Got the Fluff, the Memes, and the Hype!" />
+        <meta property="twitter:image"
+            content="assets\images\png\splash_web.png" />
+        <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">    </head>
+	<body>
+    <section class="memes">
+        <h1>GET ALL THE $NUGGAS YOU WANT!</h1>
+        <div class="col-100" id="gallery"></div>
+        <div class="col-100 pagination" id="pagination"></div>
+    </section>
+        <script>
+            // Lista manual de nombres de archivos de imágenes
+            //const imageFiles = [ '3.jpg', '4.jpg', '5.jpg','6.jpg', '7.png', '2.jpg']; // Agrega aquí los nombres de tus imágenes
+            const imageFiles = [];
+            for (let i = 1; i <= 55; i++) {
+            imageFiles.push(`${i}.jpg`);
+            }
+            
+            const imagesPerPage = 20;
+            let currentPage = 1;
+    
+            function displayImages(page) {
+                const gallery = document.getElementById('gallery');
+                gallery.innerHTML = ''; // Limpiar galería
+    
+                const start = (page - 1) * imagesPerPage;
+                const end = start + imagesPerPage;
+                const paginatedImages = imageFiles.slice(start, end);
+    
+                paginatedImages.forEach(img => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = "assets/images/png/" + img;
+                    gallery.appendChild(imgElement);
+                });
+            }
+    
+            function setupPagination() {
+                const paginationContainer = document.getElementById('pagination');
+                if (!paginationContainer) {
+                    console.error('El contenedor de paginación no se encontró.');
+                    return;
+                }
+    
+                const totalPages = Math.ceil(imageFiles.length / imagesPerPage);
+    
+                paginationContainer.innerHTML = ''; // Limpiar paginación
+    
+                for (let i = 1; i <= totalPages; i++) {
+                    const button = document.createElement('button');
+                    button.innerText = i;
+                    button.addEventListener('click', () => {
+                        currentPage = i;
+                        displayImages(currentPage);
+                        updatePagination();
+                    });
+                    paginationContainer.appendChild(button);
+                }
+            }
+    
+            function updatePagination() {
+                const buttons = document.querySelectorAll('.pagination button');
+                buttons.forEach((button, index) => {
+                    button.disabled = (index + 1 === currentPage);
+                });
+            }
+    
+            document.addEventListener('DOMContentLoaded', () => {
+                displayImages(currentPage);
+                setupPagination();
+                updatePagination();
+            });
+            
+        </script>
+    </body>	
+</html>

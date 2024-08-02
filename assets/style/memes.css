@@ -1,0 +1,81 @@
+/* GALLERY */
+
+body {
+    background-image: url(../images/png/splash_web2.png);
+    background-repeat: repeat-y;
+    background-size: cover;
+    background-position: top;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    display: block!important; /* Para Chrome, Safari y Opera */
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin-top: 3rem;
+    padding-bottom: 3rem;
+    align-items: center;
+    align-content: center;
+}
+#gallery img {
+    object-fit: scale-down;
+    border: 7px solid white;
+    width: 30%;
+    height: fit-content;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+body>section>div {
+    max-width: 1260px;
+    margin: auto;
+    padding-inline: 20px;
+}
+
+button:disabled {
+    /* Estilos que deseas aplicar cuando el botón está deshabilitado */
+    opacity: 0.5; /* Por ejemplo, reducir la opacidad */
+    cursor: not-allowed; /* Cambiar el cursor a "no permitido" */
+    /* Otros estilos según tus preferencias */
+}
+
+h1 {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+/* RESPONSIVE */
+
+
+@media (max-width: 1260px) { 
+
+    
+}
+
+@media (max-width: 810px) { 
+
+}
+
+
+@media (max-width: 780px) { 
+    #gallery img {
+        max-width: 95%;
+        max-height: 35%;
+        object-fit: contain;
+        width: 95%;
+    }
+}
+
+@media (max-width: 430px) { 
+
+}
