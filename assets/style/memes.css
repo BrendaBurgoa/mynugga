@@ -58,11 +58,17 @@ h1 {
 
 
 @media (max-width: 1260px) { 
-
+    #gallery img {
+        max-width: 50;
+        max-height: 35%;
+        object-fit: contain;
+        width: 95%;
+    }
     
 }
 
 @media (max-width: 810px) { 
+
 
 }
 
