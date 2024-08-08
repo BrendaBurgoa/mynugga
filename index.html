@@ -32,6 +32,13 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">    </head>
 	<body>
+    <div class="banner">
+        <div onclick="copyContract('0x9fd87aefe02441b123c3c32466cd9db4c578618f', 'btn1')" class="copyContract">
+            <p>0x9fd87aefe02441b123c3c32466cd9db4c578618f</p>
+            <img src="./assets/images/svg/copy.svg" alt="" id="copy">
+        </div>
+        <a href="./gallery.html">CHARTS</a>
+    </div>
     <img id="myVideo" src="assets/images/png/splash_web.png" alt="">
 	<!--<video autoplay muted loop id="myVideo" src="assets/images/png/1.mp4" type="video/mp4">-->
 	</video>
@@ -66,5 +73,13 @@
 			
 		</div>
         <script src="./assets/scripts/script.js"></script>
+        <script>
+            function copyContract(valn, id) {
+              navigator.clipboard.writeText(valn);
+              var img = document.getElementById("copy");
+              img.src = './assets/images/svg/check.svg';
+            //   'Copied!'
+            }
+        </script>
     </body>	
 </html>

@@ -314,6 +314,39 @@ a:hover {
   animation: gradient-animation 10s ease infinite;
 }
 
+.banner {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: #000000c7;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.banner p {
+  margin: 0;
+  background-color: transparent;
+  color: white;
+  padding-left: 1rem;
+  cursor: pointer;
+}
+
+.banner a {
+  margin-right: 1rem;
+}
+
+.banner img {
+  cursor: pointer;
+}
+
+.copyContract {
+  display: flex;
+  align-items: center;
+}
+
 @keyframes gradient-animation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -558,6 +591,13 @@ a:hover {
 
 /* Fondo para móvil */
 @media (max-width: 767px) {
+
+  .banner img {
+    width: 16px;
+  }
+  .banner p {
+    font-size: 12px;
+  }
 
   #myVideo {
     position: absolute;
