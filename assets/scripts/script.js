@@ -105,7 +105,9 @@ function changeBackground() {
 	
 	backgroundContainer.style.display="block";
   document.querySelector('.data-text').style.display= "none";
-  document.querySelector('.share_btn').style.display= "block";
+  if (window.innerWidth > 600) {
+    document.querySelector('.share_btn').style.display= "block";
+  }
   document.querySelector('.data-container').style.height= "auto";
 
 

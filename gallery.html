@@ -33,12 +33,29 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">    </head>
 	<body>
+    <div class="banner">
+        <div onclick="copyContract('GYEWiWGV5tTszSZUhdoTaaegShJCgzYG3XpdF1Qe6ko6', 'btn1')" class="copyContract">
+            <p id="address">Address: GYEWiWGV5tTszSZUhdoTaaegShJCgzYG3XpdF1Qe6ko6</p>
+            <img src="./assets/images/svg/copy.svg" alt="" id="copy">
+        </div>
+        <a href="https://dexscreener.com/solana/GYEWiWGV5tTszSZUhdoTaaegShJCgzYG3XpdF1Qe6ko6" target="_blank">CHARTS</a>
+    </div>
     <section class="memes">
         <h1>GET ALL THE $NUGGAS YOU WANT!</h1>
         <div class="col-100" id="gallery"></div>
         <div class="col-100 pagination" id="pagination"></div>
     </section>
         <script>
+            function copyContract(valn, id) {
+              navigator.clipboard.writeText(valn);
+              var img = document.getElementById("copy");
+              img.src = './assets/images/svg/check.svg';
+            //   'Copied!'
+            }
+            if (window.innerWidth < 600) {
+                var address = document.getElementById("address");
+                address.textContent="Address: GYEWiWGV5tTszS..."
+            }
             // Lista manual de nombres de archivos de imágenes
             //const imageFiles = [ '3.jpg', '4.jpg', '5.jpg','6.jpg', '7.png', '2.jpg']; // Agrega aquí los nombres de tus imágenes
             const imageFiles = [];

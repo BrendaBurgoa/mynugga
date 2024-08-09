@@ -33,11 +33,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">    </head>
 	<body>
     <div class="banner">
-        <div onclick="copyContract('0x9fd87aefe02441b123c3c32466cd9db4c578618f', 'btn1')" class="copyContract">
-            <p>Address: 0x9fd87aefe02441b123c3c32466cd9db4c578618f</p>
+        <div onclick="copyContract('GYEWiWGV5tTszSZUhdoTaaegShJCgzYG3XpdF1Qe6ko6', 'btn1')" class="copyContract">
+            <p id="address">Address: GYEWiWGV5tTszSZUhdoTaaegShJCgzYG3XpdF1Qe6ko6</p>
             <img src="./assets/images/svg/copy.svg" alt="" id="copy">
         </div>
-        <a href="https://www.dextools.io/app/es/hot-pairs" target="_blank">CHARTS</a>
+        <a href="https://dexscreener.com/solana/GYEWiWGV5tTszSZUhdoTaaegShJCgzYG3XpdF1Qe6ko6" target="_blank">CHARTS</a>
     </div>
     <img id="myVideo" src="assets/images/png/splash_web.png" alt="">
 	<!--<video autoplay muted loop id="myVideo" src="assets/images/png/1.mp4" type="video/mp4">-->
@@ -79,6 +79,10 @@
               var img = document.getElementById("copy");
               img.src = './assets/images/svg/check.svg';
             //   'Copied!'
+            }
+            if (window.innerWidth < 600) {
+                var address = document.getElementById("address");
+                address.textContent="Address: GYEWiWGV5tTszS..."
             }
         </script>
     </body>	
